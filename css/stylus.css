@@ -1,0 +1,56 @@
+@charset "utf-8 pt-BR";
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+/* nav */
+.navColor{
+    width: 100%;
+    background-color: #a80532;
+}
+.navColor a{
+   
+    color: white;
+
+}
+#h2Nav{
+
+    color: white;
+}
+
+.logarIndex{
+    margin-left: 10px;
+}
+
+.btnSair{
+    background-color: red;
+    text-decoration: none;
+}
+
+.btnSair a{
+    color: white;
+
+}
+.btnSair:hover{
+    color: red;
+    background-color:white;
+}
+.btnSair a:hover{
+    color: red;
+    background-color:white;
+}
+
+.btnLogar:hover
+{
+    color:blue;
+    background-color:white;
+}
+
+
+/* Professores */
+.container{
+    width: 90%;
+    margin: 50px auto;
+}
+
