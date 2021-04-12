@@ -1,42 +1,38 @@
 <?php
-$REQUEST_URI = filter_input(INPUT_SERVER, 'REQUEST_URI');
-//Se existir a variavel amazena no $INIT
-$INITE = strpos($REQUEST_URI, '?');
+require_once ('./services/sessao.php');
+require_once ('./services/conexao.php');
+require_once ('./services/lerbd.php');
+require_once ('./html/header.php');
+require_once ('html/menu.php');
 
-if($INITE){
-    //Remove tudo que ha depois da interrogação
-    $REQUEST_URI = substr($REQUEST_URI, 0 ,$INITE);
-}
-$REQUEST_URI_PASTA = substr($REQUEST_URI,1);
-
-$URL = explode('/',$REQUEST_URI_PASTA);
-
-$URL[0] = ($URL[0] != '' ? $URL[0] : 'home' );
+?>
 
 
-if(file_exists('_mypages_/'. $URL[0].'.php') ){
+<div class="container">
 
-    require('_mypages_/'. $URL[0].'.php');
+    <div class="row">
+        <div class="col-12 caixaDeMensagem"><img src="./public/home.png" class="img-fluid" alt="Imagem responsiva"></div>
+    </div>
 
-}elseif(is_dir('_mypages_/'. $URL[0]) ){
+    <div class="row">
+        <div class="col-12 caixaDeMensagem">
+            <form action="http://localhost/services/services.php" method="post">
 
-    echo 'ok';
+                <div class="form-group">
+                    <h2 class="h2comentario">Deixe seu comentário</h2>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="button" class="btn btn-success btnComentario" name="comentario">Enviar</button>
+            
+        </div>
+    </div>
 
-    if(isset($URL[1]) && file_exists('_mypages_/'. $URL[0].'/'.$URL[1].'.php') ){
+    <div class="row">
+        <?php $card = lerComentario($connection);
+        echo $card; ?>
+    </div>
 
-        echo 'ok';
-        require('_mypages_/'. $URL[0] .'/'. $URL[1] .'.php');
+    </form>
+</div>
 
-    }else{
-
-        require('_mypages_/404.php');
-    }
-}elseif(is_dir('public/')){
-
-    require('_mypages_/404.php');
-
-
-}else{
-
-    require('_mypages_/404.php');
-}
+<?php require_once('./html/footer.php') ?>
