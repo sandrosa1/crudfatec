@@ -11,11 +11,11 @@ CREATE DATABASE teste;
 USE teste;
 
 //Criando tabela clientes
-CREATE TABLE usuarios(id VARCHAR(60) PRIMARY KEY,nome VARCHAR(30) NOT NULL,imagem VARCHAR(100));
+CREATE TABLE usuarios(id INT PRIMARY KEY AUTO_INCREMENT, senha VARCHAR(60) NOT NULL,nome VARCHAR(30) NOT NULL,imagem VARCHAR(100) NOT NULL);
     
 
 //Polvoando banco
-insert into teste.usuarios (id, nome, imagem)
+insert into teste.usuarios ( senha, nome, imagem)
 values('$2y$12$b3/9HDbecFkVAWgLEkdjxuHj5WpydzEMshtOnAFHMflRuiYa.XmDC','Sandro','imagem.jpg');
 
 
@@ -25,7 +25,7 @@ select * from usuarios;
 
 CREATE TABLE comentarios
      (
-    id INT PRIMARY KEY AUTO_INCREMENT ,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(30) NOT NULL,
     imagem VARCHAR(100) NOT NULL,
     comentario VARCHAR(400)NOT NULL
@@ -36,7 +36,7 @@ values('Sandro','america.jpg','Contrary to popular belief, Lorem Ipsum is not si
 
 select * from comentario;
 
-DROP TABLE comentario;
+DROP TABLE comentarios;
 DROP TABLE usuario;
 
 

@@ -1,12 +1,24 @@
 <?php
+require_once ('./../services/sair.php');
 
- function delete($nome,$connection){
-  $query = "DELETE FROM professores WHERE nome = :nome";
+
+ function deleteUsuario($id,$connection){
+    
+  $query = "DELETE FROM usuarios WHERE id = :id";
   $result = $connection->prepare($query);
-  $result->bindValue(':nome',$nome);
+  $result->bindValue(':id',$id);
   $result->execute();
   $connection = null;
-  header('location: http://localhost/paginas/cadastrar.php');
+  sair();
+  
  }
- /* close connection */
 
+
+ function deleteComentario($id,$connection){
+    $query = "DELETE FROM comentarios WHERE id = :id";
+    $result = $connection->prepare($query);
+    $result->bindValue(':id',$id);
+    $result->execute();
+    $connection = null;
+    
+   }

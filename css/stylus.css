@@ -8,6 +8,8 @@
 body{
     background-color: rgb(66, 62, 62);
 }
+
+
 /* nav */
 .navColor{
     width: 100%;
@@ -98,9 +100,9 @@ body{
 }
 
 .footer{
-
     width: 100%;
     margin-top: 40px;
+    bottom:0;
 }
 
 footer{
@@ -357,4 +359,7 @@ footer p{
 
     background-color: white;
 }
-    
+.container{
+
+  min-height: 500px;
+} 

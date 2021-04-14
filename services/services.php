@@ -2,22 +2,24 @@
 require_once ('./sessao.php');
 require_once ('./conexao.php');
 require_once ('./inserir.php');
-require_once ('./editar.php');
 require_once ('./delete.php');
 require_once ('./logar.php');
+
 
 $usuario = [];
 $usuario[0] = $_POST['senha'] ?? '';
 $usuario[1] = $_POST['nome'] ?? '';
 $usuario[2] = $_FILES['imagem'] ?? 1;
 $usuario[3] = $_POST['comentario'] ?? '';
+$error ='';
 
 if(isset($_POST['inserirUsuario'])){
 
-    var_dump("inserindo");
+
     // Senha --- nome ---- ima
     if($usuario[0] == '' || $usuario[1] == '' || $usuario[2] == ''){
 
+        $error = "Prencher todos as campos:(";
         header('location: http://localhost/paginas/error.php');
 
     }else{
@@ -27,6 +29,7 @@ if(isset($_POST['inserirUsuario'])){
         $tipo = substr($anexo['name'], -4);
         $cliente[2] = "{$nameImagen}{$tipo}";
         $imagem = $anexo['tmp_name'];
+        var_dump($imagem);
         move_uploaded_file($imagem,"./../public/{$cliente[2]}");
         $cliente[0] = $senhaSegura;
         $cliente[1] = $usuario[1];
@@ -38,6 +41,7 @@ if(isset($_POST['inserirUsuario'])){
         logar($connection,$usuario[0],$usuario[1]);
         $usuario[0]='';
         $usuario[1]='';
+        $error = '';
     }
 }
 
@@ -45,59 +49,38 @@ if(isset($_POST['inserirComentario'])){
 
     if($logado){
 
-        $cliente[2] = $imagemCliente;
+        $usuario[1] = $_SESSION['usuario'];
+        $usuario[2] = $_SESSION['imagem'];
 
     }else{
 
-        $cliente[2] = 'imagenAnonima.jpg';
+        $usuario[1] = 'Anonimo!!!';
+        $usuario[2] = 'imagenAnonima.jpg';
     }
+    var_dump($usuario[1].'1');
+    var_dump($usuario[2]).'2';
+    var_dump($usuario[3]).'3';
 
-    if($usuario[0] == '' || $usuario[1] == '' || $usuario[2] == ''){
+    if($usuario[3] == '' || $usuario[1] == '' || $usuario[2] == ''){
 
+        $error = "Algo deu errado tente refazer:(";
         header('location: http://localhost/paginas/error.php');
 
+
     }else{
 
+        var_dump("else");
+
         $cliente[1] = $usuario[1];
-        $cliente[0] = $usuario[3];
-        $usuario[0] = '';
+        $cliente[2] = $usuario[2];
+        $cliente[3] = $usuario[3];
+        $cliente[0] = '';
         $usuario[1] = '';
         $usuario[2] = '';
         $usuario[3] = '';
         $anexo = [];
-        //inserirComentario($cliente, $connection);
-    }
-}
-
-
-
-
-if(isset($_POST['editar'])){
-    $id = $_POST['id'] ?? '';
-    $email = $_POST['nome'] ?? '';
-
-    if($nome == ''|| $id == ''){
-        echo "error";
-        header('location: http://localhost/paginas/error.php');
-
-    }else{
-     editar($id, $nome, $connection);
-
-    }
-}
-
-if(isset($_POST['delete'])){
-
-    $nome = $_POST['nome'] ?? '';
- 
-    if($nome == ''){
-        header('location: http://localhost/paginas/error.php');
-
-    }else{
-       delete($nome, $connection);
-       $nome ='';
-       $inserir = '';
-
+        $error = '';
+        inserirComentario($cliente, $connection);
     }
 }
 
@@ -107,14 +90,15 @@ if(isset($_POST['logar'])){
     $senha = $_POST['senha'] ?? '';
 
     if($usuario == '' || $senha == ''){
+
+        $error = "Preencher todos os campos:(";
         header('location: http://localhost/paginas/error.php');
         
     }else{
-
+        $error = '';
         logar($connection,$senha,$usuario);
     }
     
-
 }
 
 if(isset($_POST['sair'])){
@@ -123,10 +107,3 @@ if(isset($_POST['sair'])){
 
 }
 
-if(isset($_POST['enviarComen'])){
-
-    $nome = $_POST['nome'] ?? '';
-    $anexo = $_FILES['imagem'] ?? 1;
-    $comentario = $_POST['comentario'] ?? '';
-
-}
