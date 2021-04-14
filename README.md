@@ -4,7 +4,7 @@ Objetivo deste trabalho e manipular banco de dados com PHP
 
 
 
-\* ![Autocomplete/card](https://github.com/sandrosa1/crudfatec/tree/main/public/projeto.gif)
+\* ![Autocomplete/card](https://github.com/sandrosa1/crudfatec/blob/main/public/projeto.gif)
 
 
 
