@@ -19,6 +19,7 @@
             </ul>
             <h2 class='h2Nav' id='{$_SESSION['usuario']}'>Olá {$_SESSION['usuario']} </h2><br>
             ";
+            
         }else{
           echo "</ul>";
         }

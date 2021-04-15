@@ -8,6 +8,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script language="javascript"> var logado = "<?php echo $validador; ?>";</script>
+
   <?php 
   if($page == 'home'){
     echo "<script src= './js/index.js'></script>";

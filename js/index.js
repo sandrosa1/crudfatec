@@ -90,3 +90,71 @@ function excluirUsu(obj)
    })
    .catch(erro =>  console.log(erro))  
 }   
+
+
+
+
+
+function editarComentario(obj){
+   
+
+   nome = obj.id;
+   id =obj.value;
+   console.log(logado);
+   console.log(nome);
+    if(logado == nome){
+        
+        (async () => {
+
+            const { value: text } = await Swal.fire({
+              input: 'textarea',
+              inputLabel: 'Editar comentario',
+              inputPlaceholder: 'Type your message here...',
+              inputAttributes: {
+                'aria-label': 'Type your message here'
+              },
+              showCancelButton: true
+            })
+            
+            if (text) {
+              Swal.fire(text)
+              
+              setTimeout(function(){ editarCom(text,id); }, 1500);
+            }
+            
+        })()
+    }
+    
+}
+
+function editarCom(text,id)
+{
+  
+    fetch(URL_BASEC,
+    {
+        method :'PUT',
+        body:'id='+id+'&comentario='+text,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+    .then(response => response.json())
+    .then(json => retorno(json.mensagem))
+    .catch(erro =>  console.log(erro))
+    .finally( final => retorno())
+
+
+}   
+
+function retorno(){
+
+    Swal.fire({
+
+        position: 'top-end',
+        icon: 'success',
+        title: 'Sucesso',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      setTimeout(function(){ window.reload(); }, 1500);
+}

@@ -45,6 +45,7 @@ function lerComentario($connection){
         <h5 class='card-title'>{$user['nome']}</h5>
         <p class='card-text'>{$user['comentario']}</p>
         <button id='{$user['id']}' type='buton' class='btn btn-danger btnComentario'  value='{$valida}'  onclick='excluirComentario(this)'>Excluir</button>
+        <button id='{$user['nome']}' type='buton' class='btn btn-primary btnComentario'  value='{$user['id']}'  onclick='editarComentario(this)'>Editar</button>
         </div>
         </div>
         </div>

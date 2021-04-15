@@ -72,7 +72,8 @@ body{
     color: rgb(66, 62, 62);
 }
 .btnComentario{
-    float: right;
+  float: right;
+  margin-left: 10px;
 }
 
 .divCardImg{
